@@ -11,10 +11,6 @@ app.use(express.json());
 app.use(cors());
 app.listen(5000);
 
-app.get("/here", (req, res) => {
-  res.send("Hello!!");
-});
-
 app.post("/sign-up", (req, res) => {
   console.log("Ok");
   console.log(req.body);
