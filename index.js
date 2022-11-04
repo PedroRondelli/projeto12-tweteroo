@@ -2,28 +2,9 @@ import axios from "axios";
 import express from "express";
 import cors from "cors";
 
-const users = [
-  {
-    username: "bobesponja",
-    avatar:
-      "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
-  },
-];
+const users = [];
 
-const tweets = [
-  {
-    username: "bobesponja",
-    tweet: "eu amo o vasco",
-  },
-  {
-    username: "bobesponja",
-    tweet: "eu sou da GDA",
-  },
-  {
-    username: "bobesponja",
-    tweet: "o vasco é minha vida",
-  },
-];
+const tweets = [];
 
 const app = express();
 app.use(express.json());
@@ -44,7 +25,7 @@ app.get("/tweets", (req, res) => {
   const numberOfTweets = tweets.length;
   const lastTweets = [];
   if (numberOfTweets <= 10) {
-    for (let i = 0; numberOfTweets > i; i++) {
+    for (let i = numberOfTweets - 1; 0 <= i && i !== -1; i--) {
       const { username, tweet } = tweets[i];
       const tweetOwner = users.find((user) => user.username === username);
       lastTweets.push({
@@ -53,9 +34,14 @@ app.get("/tweets", (req, res) => {
         tweet,
       });
     }
+    console.log(lastTweets);
     return res.send(lastTweets);
   } else {
-    for (let i = 0; 10 > i; i++) {
+    for (
+      let i = numberOfTweets - 1;
+      numberOfTweets - 10 <= i && i !== -1;
+      i--
+    ) {
       const { username, tweet } = tweets[i];
       const tweetOwner = users.find((user) => user.username === username);
       lastTweets.push({
@@ -64,8 +50,7 @@ app.get("/tweets", (req, res) => {
         tweet,
       });
     }
+    console.log(lastTweets);
     return res.send(lastTweets);
   }
 });
-
-console.log("Rodando ... ");
