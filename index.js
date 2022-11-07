@@ -34,7 +34,6 @@ app.get("/tweets", (req, res) => {
         tweet,
       });
     }
-    console.log(lastTweets);
     return res.send(lastTweets);
   } else {
     for (
@@ -50,7 +49,6 @@ app.get("/tweets", (req, res) => {
         tweet,
       });
     }
-    console.log(lastTweets);
     return res.send(lastTweets);
   }
 });
